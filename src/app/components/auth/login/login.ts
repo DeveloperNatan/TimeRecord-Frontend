@@ -10,7 +10,7 @@ import { AuthService } from '../../../services/auth';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
-export class Login {
+export class AuthLogin {
   LoginForm: FormGroup;
 
   constructor(

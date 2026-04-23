@@ -1,24 +1,32 @@
-<div class="max-w-md mx-auto mt-10 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-  <div class="mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">Data</h1>
+<div class="flex min-h-screen items-center justify-center bg-gray-50">
+  <div class="flex flex-col items-center gap-8">
+
+  
+    <!-- Formulário -->
+    <form [formGroup]="RecordedForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center gap-6">
+
+      <!-- Input escondido com valor fixo -->
+      <input formControlName="Matriculation" type="hidden" />
+
+      <!-- Botão circular -->
+      <button
+        type="submit"
+        [disabled]="RecordedForm.invalid"
+        class="group flex h-36 w-36 flex-col items-center justify-center rounded-full border-2 border-blue-400 bg-white shadow-lg transition-all duration-300 hover:border-blue-600 hover:shadow-blue-100 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 h-7 w-7 text-blue-400 transition-colors duration-300 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-blue-400 transition-colors duration-300 group-hover:text-blue-900">
+          Registrar
+        </span>
+      </button>
+
+    </form>
+
+    <!-- Label de status -->
+    <p class="text-xs uppercase tracking-widest text-gray-300">Ponto Eletrônico</p>
+
   </div>
-
-  <form [formGroup]="RecordedForm" (ngSubmit)="onSubmit()" class="space-y-4">
-    <div>
-      <input
-        formControlName="Matriculation"
-        type="text"
-        placeholder="Digite o Matriculation"
-        class="w-full rounded-md border border-gray-300 px-4 py-2 text-gray-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-      />
-    </div>
-
-    <button
-      type="submit"
-      [disabled]="RecordedForm.invalid"
-      class="w-full rounded-md bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400"
-    >
-      Enviar
-    </button>
-  </form>
 </div>

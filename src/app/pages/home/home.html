@@ -1,0 +1,49 @@
+<div class="flex min-h-screen flex-col bg-gray-50">
+
+  <!-- Nav -->
+  <nav class="border-b border-gray-200 bg-white px-8 py-4 shadow-sm">
+    <ul class="flex gap-8">
+      <li>
+        <a href="/admin" class="text-sm font-medium uppercase tracking-widest text-gray-400 transition-colors duration-200 hover:text-blue-900">
+          Perfil
+        </a>
+      </li>
+      <li>
+        <a href="/pontos" class="text-sm font-medium uppercase tracking-widest text-gray-400 transition-colors duration-200 hover:text-blue-900">
+          Meus Pontos
+        </a>
+      </li>
+      <li>
+        <a href="/cash" class="text-sm font-medium uppercase tracking-widest text-gray-400 transition-colors duration-200 hover:text-blue-900">
+          F. Pagamento
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <div class="flex flex-1 flex-col justify-center gap-10 px-16 py-16">
+
+    <!-- Saudação + Empresa -->
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] text-blue-900">Nome da Empresa</p>
+      <h1 class="mt-1 text-2xl font-thin text-blue-900">Bom dia, <span class="font-medium">Nome do Funcionário</span></h1>
+    </div>
+
+    <!-- Divisor -->
+    <div class="w-64 border-t border-gray-200"></div>
+
+    <!-- Data e Hora -->
+    <div>
+      <p class="text-5xl font-thin tracking-widest text-blue-900">{{hour()}}</p>
+      <p class="mt-2 text-sm font-medium uppercase tracking-[0.2em] text-blue-900/50">{{day()}}</p>
+    </div>
+
+    <!-- Componente de ponto centralizado -->
+    <div class="flex justify-center">
+      <app-time-records />
+    </div>
+
+  </div>
+
+</div>
