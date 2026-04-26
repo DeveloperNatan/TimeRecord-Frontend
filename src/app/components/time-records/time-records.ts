@@ -1,8 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TimeRecordService } from '../../services/time-record';
-import { DatePipe } from '@angular/common';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-time-records',
@@ -14,35 +12,16 @@ import { interval } from 'rxjs';
 export class TimeRecords {
   RecordedForm: FormGroup;
 
-  private _date = signal(new Date());
-
-  day = computed(() =>
-    this._date().toLocaleString('pt-BR', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }),
-  );
-  hour = computed(() =>
-    this._date().toLocaleString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-    }),
-  );
-
-  ngOnInit() {
-    interval(1000).subscribe(() => {
-      this._date.set(new Date());
-    });
-  }
+  feedbackType = signal<string | null>(null);
+  feedbackMessage = signal<string | null>(null);
+  isLoading = signal(true);
 
   constructor(
     private fb: FormBuilder,
     private timeRecordService: TimeRecordService,
   ) {
     this.RecordedForm = this.fb.group({
-      Matriculation: ['1001'],
+      Matriculation: 1001,
     });
   }
 
@@ -51,9 +30,17 @@ export class TimeRecords {
 
     this.timeRecordService.Record(Matriculation).subscribe({
       next: (res) => {
-        console.log(res);
+        this.isLoading.set(false);
+        this.feedbackType.set('success');
+
+        const hora = new Date(res.recordedAt).toLocaleTimeString('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+
+        this.feedbackMessage.set(`Ponto registrado às ${hora}`);
+        setTimeout(() => this.feedbackMessage.set(null), 4000);
       },
-      error: (err) => console.error(err),
     });
   }
 }

@@ -1,0 +1,166 @@
+<div class="min-h-screen bg-slate-50 font-sans">
+  <!-- ═══════════════ NAVBAR ═══════════════ -->
+  <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-6 h-15 flex items-center justify-between gap-6">
+      <!-- Logo -->
+      <a
+        routerLink="/admin"
+        class="flex items-center gap-2 font-bold text-slate-900 text-sm tracking-tight shrink-0"
+      >
+        <span class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center shrink-0">
+          <svg
+            width="17"
+            height="17"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+        </span>
+        TimeRecord
+      </a>
+
+      <!-- Links — desktop -->
+      <ul class="hidden sm:flex items-center gap-1">
+        <li>
+          <a
+            routerLink="/home"
+            routerLinkActive="bg-blue-50 text-blue-600"
+            class="text-sm font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 px-3 py-1.5 rounded-md transition-colors duration-150"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="/markings"
+            routerLinkActive="bg-blue-50 text-blue-600"
+            class="text-sm font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 px-3 py-1.5 rounded-md transition-colors duration-150"
+          >
+            Meus Pontos
+          </a>
+        </li>
+      </ul>
+
+      <!-- Avatar + hamburger -->
+      <div class="flex items-center gap-3">
+        <!-- Avatar -->
+        <div
+          class="w-9 h-9 rounded-full bg-blue-100 border-2 border-blue-200 hover:border-blue-500 text-blue-700 font-bold text-xs flex items-center justify-center cursor-pointer transition-colors duration-150 select-none"
+        >
+          JS
+        </div>
+        <!-- Hamburger mobile -->
+        <button
+          class="sm:hidden flex items-center justify-center w-9 h-9 rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors duration-150"
+          aria-label="Abrir menu"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="max-w-5xl mx-auto px-6 pt-10 pb-20">
+    <!-- USER HEADER -->
+    <div class="mb-8">
+      <!-- Nome da empresa -->
+      <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-1">
+        Empresa XPTO
+      </p>
+      <!-- Saudação -->
+      <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
+        Bom dia, <span class="text-blue-600">Natan de Souza</span>
+      </h1>
+
+      <!-- Hora + Dia -->
+      <div class="flex items-center gap-4 mt-3">
+        <span class="text-2xl font-bold text-slate-900 tabular-nums tracking-tight">
+          {{ hour() }}
+        </span>
+
+        <span class="w-px h-5 bg-slate-200" aria-hidden="true"></span>
+
+        <span class="text-2xl font-medium text-slate-700">{{ weekday() }}</span>
+        <span class="text-xl font-medium text-slate-600">{{ day() }}</span>
+      </div>
+    </div>
+
+    <!-- DIVISOR (seu .border-t.border-gray-200) -->
+    <div class="w-full border-t border-slate-200 mb-10"></div>
+
+    <!-- ─── app-time-records ─── -->
+    <div class="flex justify-center">
+      <div class="flex flex-col items-center gap-8 w-full max-w-sm">
+        <!-- BOTÃO PRINCIPAL -->
+        <app-time-records />
+
+        <!-- CARD: Registros de hoje -->
+        <div class="w-full bg-white border border-slate-200 rounded-xl px-5 py-4 shadow-sm">
+          <p class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-4">
+            Registros de Hoje
+          </p>
+
+          <!-- Timeline -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 tabular-nums">08:03</p>
+                <p class="text-[11px] text-slate-400">Entrada</p>
+              </div>
+            </div>
+
+            <span class="w-5 h-px bg-slate-200 shrink-0"></span>
+
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-slate-300 shrink-0"></span>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 tabular-nums">12:01</p>
+                <p class="text-[11px] text-slate-400">Saída Almoço</p>
+              </div>
+            </div>
+
+            <span class="w-5 h-px bg-slate-200 shrink-0"></span>
+
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 tabular-nums">13:05</p>
+                <p class="text-[11px] text-slate-400">Retorno</p>
+              </div>
+            </div>
+
+            <span class="w-5 h-px bg-slate-200 shrink-0"></span>
+
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-slate-300 shrink-0"></span>
+              <div>
+                <p class="text-sm font-semibold text-slate-900 tabular-nums">18:04</p>
+                <p class="text-[11px] text-slate-400">Saída</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,32 +1,91 @@
-<div class="flex min-h-screen items-center justify-center bg-gray-50">
-  <div class="flex flex-col items-center gap-8">
-
-  
-    <!-- Formulário -->
-    <form [formGroup]="RecordedForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center gap-6">
-
-      <!-- Input escondido com valor fixo -->
+<div>
+  <div>
+    <form [formGroup]="RecordedForm" (ngSubmit)="onSubmit()">
       <input formControlName="Matriculation" type="hidden" />
 
-      <!-- Botão circular -->
-      <button
-        type="submit"
-        [disabled]="RecordedForm.invalid"
-        class="group flex h-36 w-36 flex-col items-center justify-center rounded-full border-2 border-blue-400 bg-white shadow-lg transition-all duration-300 hover:border-blue-600 hover:shadow-blue-100 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 h-7 w-7 text-blue-400 transition-colors duration-300 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/>
-          <polyline points="12 6 12 12 16 14"/>
-        </svg>
-        <span class="text-xs font-semibold uppercase tracking-[0.15em] text-blue-400 transition-colors duration-300 group-hover:text-blue-900">
-          Registrar
-        </span>
-      </button>
+      <!-- Anel pulsante -->
+      <div class="relative flex items-center justify-center">
+        <span
+          class="absolute w-40 h-40 rounded-full border-2 border-blue-200 animate-ping opacity-30 pointer-events-none"
+        ></span>
+        <span
+          class="absolute w-36 h-36 rounded-full border border-blue-100 pointer-events-none"
+        ></span>
 
+        <button
+          type="submit"
+          [disabled]="RecordedForm.invalid"
+          class="relative z-10 w-32 h-32 rounded-full bg-blue-500 hover:bg-blue-600 active:scale-95 text-white flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(59,130,246,0.35)] hover:shadow-[0_8px_30px_rgba(59,130,246,0.45)] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+          aria-label="Registrar ponto agora"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          <span class="text-[11px] font-bold uppercase tracking-widest">Registrar</span>
+        </button>
+      </div>
     </form>
 
-    <!-- Label de status -->
-    <p class="text-xs uppercase tracking-widest text-gray-300">Ponto Eletrônico</p>
+    <div class="my-6">
+      <p class="text-xs uppercase tracking-widest text-gray-600">Ponto Eletrônico</p>
+    </div>
+  </div>
 
+  <div class="my-4 min-h-10 flex items-center justify-center">
+    @if (feedbackMessage()) {
+      <div
+        class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium"
+        [class]="
+          feedbackType() === 'success'
+            ? 'bg-green-400 text-green-700 border border-green-300'
+            : 'bg-red-400 text-red-700 border border-red-300'
+        "
+      >
+        @if (feedbackType() === 'success') {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        } @else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+        }
+        {{ feedbackMessage() }}
+      </div>
+    }
   </div>
 </div>

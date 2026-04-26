@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TimeRecordResponse } from '../models/time-record.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,6 @@ export class TimeRecordService {
   constructor(private http: HttpClient) {}
 
   Record(matriculation: number) {
-    return this.http.post(this.apiUrl, { Matriculation: matriculation });
+    return this.http.post<TimeRecordResponse>(this.apiUrl, { Matriculation: matriculation });
   }
 }
